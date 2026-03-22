@@ -5,12 +5,17 @@ phases:
     commands:
       # Commands to run before the build (e.g., login to a container registry)
       - echo "Running pre-build commands..."
+      - echo $AWS_DEFAULT_REGION
+      - echo $AWS_ACCOUNT_ID
+      - env
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      
   build:
     commands:
       # Commands to build the application (e.g., compile code, build Docker image)
       - echo "Building the application..."
       - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_://region.amazonaws.com .
+      -
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_://region.amazonaws.com
   post_build:
     commands:
