@@ -8,15 +8,16 @@ phases:
       - echo $AWS_DEFAULT_REGION
       - echo $AWS_ACCOUNT_ID
       - env
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      
+#      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 058375533388.dkr.ecr.us-east-1.amazonaws.com
   build:
     commands:
       # Commands to build the application (e.g., compile code, build Docker image)
       - echo "Building the application..."
-      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_://region.amazonaws.com .
-      -
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_://region.amazonaws.com
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION .amazonaws.com .
+      - docker tag braintaskapp:latest 058375533388.dkr.ecr.us-east-1.amazonaws.com/braintaskapp:latest
+#      - docker build -t braintaskapp:latest .
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   post_build:
     commands:
       # Commands to run after the build (e.g., running tests, cleanup)
