@@ -20,5 +20,7 @@ phases:
       - docker push koventhan/braintaskapp:latest
   post_build:
     commands:
+      - pwd
+      - ls -ltr
       - kubectl apply -f k8s/deployment.yaml
       - kubectl apply -f k8s/service.yaml
