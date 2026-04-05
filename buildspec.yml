@@ -22,5 +22,5 @@ phases:
     commands:
       - pwd
       - ls -ltr
-      - kubectl apply -f k8s/deployment.yaml
+      - kubectl apply -f k8s/nginx-deployment.yaml
       - kubectl apply -f k8s/service.yaml
