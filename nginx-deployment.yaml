@@ -18,7 +18,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: 058375533388.dkr.ecr.us-east-1.amazonaws.com/braintaskapp:latest
+      - image: koventhan/braintaskapp:latest
         name: nginx
         ports:
         - containerPort: 3000 

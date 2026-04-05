@@ -16,7 +16,9 @@ phases:
     commands:
       - docker build -t braintaskapp:latest .
       - docker tag braintaskapp:latest koventhan/braintaskapp:latest
-  post_build:
-    commands:
       - echo "Pushing the Docker image..."
       - docker push koventhan/braintaskapp:latest
+  post_build:
+    commands:
+      - kubectl apply -f k8s/deployment.yaml
+      - kubectl apply -f k8s/service.yaml
