@@ -7,11 +7,11 @@ env:
     DOCKERHUB_PASSWORD: "docker_credentials:DOCKER_HUB_PASSWORD"
 
 phases:
-  install:
-    commands:
-      - curl -LO "https://k8s.io(curl -L -s https://k8s.io)/bin/linux/amd64/kubectl"
-      - chmod +x ./kubectl
-      - mv ./kubectl /usr/local/bin/kubectl
+#  install:
+#    commands:
+#      - curl -LO "https://k8s.io(curl -L -s https://k8s.io)/bin/linux/amd64/kubectl"
+#      - chmod +x ./kubectl
+#      - mv ./kubectl /usr/local/bin/kubectl
   pre_build:
     commands:
       - echo "Logging into Docker Hub..."
