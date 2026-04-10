@@ -26,6 +26,7 @@ phases:
   post_build:
     commands:
       - pwd
+      - pwd
       - ls -ltr
       - kubectl get nodes
       - aws eks update-kubeconfig --name mycluster --region us-east-1
