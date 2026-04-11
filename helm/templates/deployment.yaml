@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Using the name from values.yaml or a default
+  name: {{ include "braintaskapp.name" . }}-deployment
+  labels:
+    app: {{ include "braintaskapp.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      # CRITICAL: This must match the template labels below
+      app: {{ include "braintaskapp.name" . }}
+  template:
+    metadata:
+      labels:
+        # This is what the Service and the Deployment Selector look for
+        app: {{ include "braintaskapp.name" . }}
+    spec:
+      containers:
+        - name: braintaskapp
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+              protocol: TCP
+          # Inclusion of an empty resources block to keep it valid
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
